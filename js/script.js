@@ -96,8 +96,6 @@ const titleClickHandler = function(event){
             
         }
             console.log(links);
-
-
     }
 
     generateTitleLinks();
