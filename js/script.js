@@ -84,8 +84,8 @@ const titleClickHandler = function(event){
             const linkHTML = '<li><a href="#' + articleId +'"><span>' + articleTitle + '</span></a></li>';
             console.log(linkHTML);
         /* insert link into titleList */
-            const insertHTML = document.getElementById('titleList');
-            insertHTML.insertAdjacentHTML('afterbegin', linkHTML);
+            const linkList = document.getElementById('titleList');
+            linkList.insertAdjacentHTML('beforeend', linkHTML);
         }
 
         let links = document.querySelectorAll('.titles a');
