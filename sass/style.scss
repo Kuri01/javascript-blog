@@ -85,6 +85,12 @@ body {
   }
 }
 
+.post-author{
+  .active {
+    font-weight: bold;
+  }
+}
+
 .list-horizontal {
   li {
     display: inline-block;
