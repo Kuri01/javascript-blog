@@ -153,16 +153,15 @@ function removeClassActive(){
       const linkHTML = document.querySelector('.authors');
 
       for(let author in allAuthors){
-        // authorListLinkHTML += '<li>' + calculateElementClass(allAuthors[author], params, author, 'author') + '</li>';
         allAuthorsData.authors.push({
           author: author,
           count: allAuthors[author],
-          className: calculateElementClass2(allAuthors[author], params, author, 'author')
+          className: calculateElementClass2(allAuthors[author], params, 'author')
         })
       }
       console.log('DATA AUTORS:', allAuthorsData);
       linkHTML.innerHTML = templates.authorCloudLink(allAuthorsData);
-      // optAuthorListSelector.insertAdjacentHTML('beforeend', authorListLinkHTML);
+
     console.log('list of authors: ', allAuthors)
   }
   generateAuthors();
@@ -211,18 +210,7 @@ function removeClassActive(){
     return params;
   }
 
-function calculateElementClass(count, params, name, elementType){
-
-  const normalizedCount = count - params.min;
-  const normalizedMax = params.max - params.min;
-  const percentage = normalizedCount / normalizedMax;
-  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
-
-  return `<a href="#${elementType}-${name}" class="${elementType}" ${elementType}-size="${classNumber}">${name}</a>`;
-  // return <a href="#' + elementType + '-' + name + '" class="' + elementType + '"' + elementType + '-size="' + classNumber + '"' + '>' + name + '</a>' + '</li>';
-}
-      
-function calculateElementClass2(count, params, name, elementType){
+function calculateElementClass2(count, params, elementType){
 
   const normalizedCount = count - params.min;
   const normalizedMax = params.max - params.min;
@@ -230,7 +218,7 @@ function calculateElementClass2(count, params, name, elementType){
   const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
 
   return `${elementType} size-${classNumber}`;
-  // return <a href="#' + elementType + '-' + name + '" class="' + elementType + '"' + elementType + '-size="' + classNumber + '"' + '>' + name + '</a>' + '</li>';
+ 
 }
 
 
@@ -238,7 +226,6 @@ function generateTags(){
   /* [NEW] create a new variable allTags with an empty array */
   let allTags = {};
 
-  const optTagsListSelector = '.tags .list'
   const optArticleTagsSelector = '.post-tags .list';
 
     /* find all articles */
@@ -275,7 +262,6 @@ function generateTags(){
       const linkHTMLData = {id: tag, title: tag}; 
       const linkHTML = templates.tagLink(linkHTMLData);
 
-      // linkTagHTML = '<li>' + '<a href="#tag-' + tag + '">' + tag + '</a>' + '</li>';
       html = html + ' ' + linkHTML;
       /* END LOOP: for each tag */
       } 
@@ -290,14 +276,12 @@ function generateTags(){
   const tagList = document.querySelector('.tags');
 
   /* [NEW] add html from allTags to tagList */
-  // tagList.innerHTML = allTags.join(' ');
   console.log(allTags);
   /* [NEW] create variable for all links HTML code */
 
   const tagsParam = calculateElementsParams(allTags);
   console.log(tagsParam);
 
-  // let allTagsHTML = '';
 
   const allTagsData = {tags: []};
   /* [NEW] START LOOP: for each tag in allTags: */
@@ -305,18 +289,15 @@ function generateTags(){
   allTagsData.tags.push({
     tag: tag,
     count: allTags[tag],
-    className: calculateElementClass2(allTags[tag], tagsParam, tag, 'tag'),
+    className: calculateElementClass2(allTags[tag], tagsParam, 'tag'),
   });
   }
 
   console.log(allTagsData)
-  // tagList.insertAdjacentHTML('beforeend', )
-
   /*[NEW] add HTML from allTagsHTML to tagList */
-  // tagList.insertAdjacentHTML('afterbegin', allTagsHTML)
   tagList.innerHTML = templates.tagCloudLink(allTagsData);
-  // tagList.insertAdjacentHTML('beforeend', linkHTML);
 }
+
       generateTags();
 
       function tagClickHandler(event){
