@@ -156,7 +156,7 @@ function removeClassActive(){
         allAuthorsData.authors.push({
           author: author,
           count: allAuthors[author],
-          className: calculateElementClass2(allAuthors[author], params, 'author')
+          className: calculateElementClass(allAuthors[author], params, 'author')
         })
       }
       console.log('DATA AUTORS:', allAuthorsData);
@@ -210,7 +210,7 @@ function removeClassActive(){
     return params;
   }
 
-function calculateElementClass2(count, params, elementType){
+function calculateElementClass(count, params, elementType){
 
   const normalizedCount = count - params.min;
   const normalizedMax = params.max - params.min;
@@ -289,7 +289,7 @@ function generateTags(){
   allTagsData.tags.push({
     tag: tag,
     count: allTags[tag],
-    className: calculateElementClass2(allTags[tag], tagsParam, 'tag'),
+    className: calculateElementClass(allTags[tag], tagsParam, 'tag'),
   });
   }
 
